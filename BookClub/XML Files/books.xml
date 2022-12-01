@@ -4,13 +4,13 @@
     <title>The Hitchhiker's Guide To The Galaxy</title>
     <description>It's an ordinary Thursday lunchtime for Arthur Dent until his house gets demolished. The Earth follows shortly afterwards to make way for a new hyperspace bypass and his best friend has just announced that he's an alien.</description>
     <author lastName="Adams" firstName="Douglas" />
-	<genre>Sci-fi</genre>
+	  <genre>Sci-fi</genre>
   </book>
   <book id="1">
     <title>Watership Down</title>
     <description>Set in southern England, the story features a small group of rabbits.</description>
     <author lastName="Adams" firstName="Richard" />
-	<genre>Adventure</genre>
+	  <genre>Adventure</genre>
 
   </book>
   <book id="2">
