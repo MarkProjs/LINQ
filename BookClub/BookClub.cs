@@ -25,7 +25,8 @@ namespace BookClub
         }
 
         public void LoadData() {
-            var books = from b in booksXml.Elements("book")
+            var bookElements = booksXml.Elements("book");
+            var books = from b in bookElements
                         select new {
                             ID = b.Attribute("id").Value,
                             Title = b.Element("title").Value,
@@ -34,6 +35,17 @@ namespace BookClub
                             AuthorFirstName = b.Element("author").Attribute("firstName").Value,
                             Genre = b.Element("genre").Value
                         };
+
+            
+            var ratingElements = ratingsXml.Elements("book");
+            var ratings = from c in ratingElements
+                         select new {
+                            BookId = c.Attribute("id").Value,
+                            NumberOfReaders = c.Elements("rating").Count()
+                        };
+
+            
+            
         }
     }
 }

@@ -6,7 +6,9 @@ namespace BookClub
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BookClub bc = new BookClub("./XML Files/");
+
+            bc.LoadData();
         }
     }
 }
