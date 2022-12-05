@@ -41,15 +41,9 @@ namespace BookClub
             var ratings = from c in ratingElements
                          select new {
                             BookId = c.Attribute("id").Value,
-                            AvgRating = (double)c.Elements("rating").Sum(n=>int.Parse(n.Value)) / c.Elements("rating").Count(),
+                            AvgRating = Math.Round((double)c.Elements("rating").Sum(n=>int.Parse(n.Value)) / c.Elements("rating").Count(), 2),
                             NumberOfReaders = c.Elements("rating").Count()
                         };
-
-            foreach(var rating in ratings) {
-                Console.WriteLine(rating.AvgRating);
-            }
-            
-            
         }
     }
 }
