@@ -7,11 +7,13 @@ namespace BookClub
     public class BookClub : IBookClub
     {
         private List<IBook> _books = new List<IBook>();
+        private XElement booksXml;
+        private XElement ratingsXml;
         
 
         public BookClub(string filePath) {
-            XElement booksXml = XElement.Load(filePath + "books.xml");
-            XElement ratingsXml = XElement.Load(filePath + "ratings.xml");
+            booksXml = XElement.Load(filePath + "books.xml");
+            ratingsXml = XElement.Load(filePath + "ratings.xml");
         }
 
         public List<IBook> Books {
@@ -21,7 +23,7 @@ namespace BookClub
         }
 
         public void LoadData() {
-
+            var bookElements = 
         }
     }
 }
