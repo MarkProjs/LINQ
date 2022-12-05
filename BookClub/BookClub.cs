@@ -1,3 +1,5 @@
+using System;
+using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
@@ -23,7 +25,15 @@ namespace BookClub
         }
 
         public void LoadData() {
-            var bookElements = 
+            var books = from b in booksXml.Elements("book")
+                        select new {
+                            ID = b.Attribute("id").Value,
+                            Title = b.Element("title").Value,
+                            Description = b.Element("description").Value,
+                            AuthorLastName = b.Element("author").Attribute("lastName").Value,
+                            AuthorFirstName = b.Element("author").Attribute("firstName").Value,
+                            Genre = b.Element("genre").Value
+                        };
         }
     }
 }
