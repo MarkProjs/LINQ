@@ -60,11 +60,34 @@ namespace BookClub
 
                             foreach(var book in top5Books) {
                                 Console.WriteLine(book);
+                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                             }
                             Console.WriteLine("These are the top 5 books");      
                             break;
                         case "2":
+                            // grouping the book by its genre
+                            var GenreQuery1 = from b in books
+                                             group b by b.Genre;
+                            
+                            var SortBooks = from g in GenreQuery1
+                                                    orderby g.Sum(n=>n.NumberOfReaders) descending, g.Average(n=>n.Rating) descending
+                                                    select new {
+                                                        Books = g,
+                                                        NumberOfReadersPerGenre = g.Count(),
+                                                        AverageOfRatingsPerGenre = Math.Round(g.Average(n=>n.Rating), 2)
+                                                    };
+                            
+                            foreach(var BooksPerGenre in SortBooks) {
+                                Console.WriteLine("Books: ");
+                                foreach(var Books in BooksPerGenre.Books) {
+                                    Console.WriteLine("\t"+Books.Title);
+                                }
+                                Console.WriteLine("Number of Books in the genre: "+ BooksPerGenre.NumberOfReadersPerGenre);
+                                Console.WriteLine("Average Rating of the genre: "+ BooksPerGenre.AverageOfRatingsPerGenre);
+                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+                            }
 
+                            Console.WriteLine();
                             break;
                         case "3":
                             Console.Write("Keyword to search: ");
@@ -77,6 +100,7 @@ namespace BookClub
                             foreach(var BookKey in BooksFromKeyWord)
                             {
                                 Console.WriteLine(BookKey);
+                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                             }         
                             break;
                         case "4":
@@ -94,6 +118,7 @@ namespace BookClub
                                 //print the top books by its genre
                                 foreach(var TopBook in TopBookPerGenre) {
                                     Console.WriteLine(TopBook);
+                                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                                 }
                             }
 
