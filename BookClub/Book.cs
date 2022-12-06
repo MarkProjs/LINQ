@@ -26,7 +26,7 @@ namespace BookClub
         public int NumberOfReaders {get;}
 
         public override string ToString() {
-            return BookId+1 + "\n" +
+            return "Book ID: " + BookId + "\n" +
                     "Title: " + Title + "\n" +
                     "Desc: " + Description + "\n" +
                     "Genre: " +Genre + "\n" +

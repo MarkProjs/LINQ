@@ -53,6 +53,14 @@ namespace BookClub
                     switch(userInput)
                     {
                         case "1":
+                            var top5Books = (from b in books
+                                             where b.NumberOfReaders > 20 && b.Rating > 3
+                                             orderby b.Rating descending
+                                             select b).Take(5);
+
+                            foreach(var book in top5Books) {
+                                Console.WriteLine(book);
+                            }
                             break;
                         case "2":
                             break;
