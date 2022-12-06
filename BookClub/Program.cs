@@ -14,9 +14,9 @@ namespace BookClub
             {
                 try
                 {
-                    Console.Write("Please enter the path to the books and ratings files: ");
+                    Console.Write("Please enter the path to the books and ratings files (There is a default folder, just type \"./XML Files/\"): ");
                     string filePath = Console.ReadLine();
-                    BookClub bc = new BookClub(filePath);
+                    BookClub bc = new BookClub(filePath.ToLower());
                     bc.LoadData();
                     List<IBook> books = bc.Books;
                     //print the books and the ratings
@@ -67,7 +67,17 @@ namespace BookClub
 
                             break;
                         case "3":
+                            Console.Write("Keyword to search: ");
+                            string UserKeyWord = Console.ReadLine();
 
+                            var BooksFromKeyWord = from b in books
+                                                   where b.Title.ToLower().Contains(UserKeyWord.ToLower()) || b.Description.ToLower().Contains(UserKeyWord.ToLower())
+                                                   select b;
+
+                            foreach(var BookKey in BooksFromKeyWord)
+                            {
+                                Console.WriteLine(BookKey);
+                            }         
                             break;
                         case "4":
                             // grouping the book by its genre
@@ -75,15 +85,15 @@ namespace BookClub
                                                     group b by b.Genre;
                             
                             //looping through the grouping
-                            foreach(var genreGroup in GenreQuery) {
+                            foreach(var GenreGroup in GenreQuery) {
                                 //selecting the top book by its genre
-                                var topBookPerGenre = (from g in genreGroup
+                                var TopBookPerGenre = (from g in GenreGroup
                                                        orderby g.Rating descending
                                                         select g).Take(1);
                                 
                                 //print the top books by its genre
-                                foreach(var topBook in topBookPerGenre) {
-                                    Console.WriteLine(topBook);
+                                foreach(var TopBook in TopBookPerGenre) {
+                                    Console.WriteLine(TopBook);
                                 }
                             }
 
