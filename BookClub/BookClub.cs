@@ -57,8 +57,6 @@ namespace BookClub
             foreach(var br in booksAndRatings)
             {
                 _books.Add(new Book(int.Parse(br.BookId), br.Title, br.Description, br.Genre, br.AuthorLastName, br.AuthorFirstName, br.AvgRating, br.NumberOfReaders));
-                Console.WriteLine(br);
-                Console.WriteLine();
             }
         }
 
