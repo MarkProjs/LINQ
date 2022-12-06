@@ -41,7 +41,8 @@ namespace BookClub
             while(menu)
             {
                 try
-                {   Console.WriteLine("What would you like to see? ");
+                {   
+                    Console.WriteLine("-----------------------------------------------------------------------MAIN MENU---------------------------------------------------------------------------------------------------------------");
                     Console.WriteLine();
                     Console.WriteLine("1. View the top-rated books. Press 1");
                     Console.WriteLine("2. Browse books by popular genre. Press 2");
@@ -49,7 +50,9 @@ namespace BookClub
                     Console.WriteLine("4. Most popular book per its genre. Press 4");
                     Console.WriteLine("5. Exit the program. Press 5");
                     Console.WriteLine();
+                    Console.Write("What would you like to see? ");
                     string userInput = Console.ReadLine();
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                     switch(userInput)
                     {
                         case "1":
