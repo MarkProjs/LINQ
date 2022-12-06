@@ -32,7 +32,7 @@ namespace BookClub
                     "Genre: " +Genre + "\n" +
                     AuthorLastName + ", "+ AuthorFirstName + "\n" +
                     "Rating: " + Rating + "\n" +
-                    "Number Of Readers: " + NumberOfReaders;
+                    "Number Of Readers: " + NumberOfReaders + "\n";
         }
         
     }

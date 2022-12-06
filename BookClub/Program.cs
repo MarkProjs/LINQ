@@ -24,7 +24,7 @@ namespace BookClub
                     {
                         Console.WriteLine(aBook);
                     }
-                    
+
                     isTrue = DisplayMenu(books, isTrue);
 
                 } catch(Exception e) {
@@ -50,12 +50,30 @@ namespace BookClub
                     Console.WriteLine("5. Exit the program. Press 5");
                     Console.WriteLine();
                     string userInput = Console.ReadLine();
+                    switch(userInput)
+                    {
+                        case "1":
+                            break;
+                        case "2":
+                            break;
+                        case "3":
+                            break;
+                        case "4":
+                            break;
+                        case "5":
+                            Console.WriteLine("Have a Good day!");
+                            menu = false;
+                            break;
+                        default:
+                            throw new Exception("ERROR!");
+                    }
                 } catch(Exception e) {
-                    Console.WriteLine("Why are you trying to break the code? Try again.");
+                    Console.WriteLine("Why are you trying to break the code? Come on. Try again.");
                     menu = true;
                 }
             }
-             return isTrue = false;
+
+            return isTrue = false;
         }
     }
 }
