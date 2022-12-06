@@ -26,11 +26,11 @@ namespace BookClub
         public int NumberOfReaders {get;}
 
         public override string ToString() {
-            return BookId + "\n" +
-                    Title + "\n" +
+            return BookId+1 + "\n" +
+                    "Title: " + Title + "\n" +
                     "Desc: " + Description + "\n" +
                     "Genre: " +Genre + "\n" +
-                    AuthorLastName + ", "+ AuthorFirstName + "\n" +
+                    "Author: " + AuthorLastName + ", "+ AuthorFirstName + "\n" +
                     "Rating: " + Rating + "\n" +
                     "Number Of Readers: " + NumberOfReaders + "\n";
         }
