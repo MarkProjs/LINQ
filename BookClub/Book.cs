@@ -3,10 +3,7 @@ namespace BookClub
     public class Book : IBook
     {
 
-        private double _rating;
-        private int _numberOfReaders;
-
-        public Book(int _bookId, string _title, string _description, string _genre, string _authorLastName, string _authorFirstName) 
+        public Book(int _bookId, string _title, string _description, string _genre, string _authorLastName, string _authorFirstName, double _rating, int _numberOfReaders) 
         {
             BookId = _bookId;
             Title = _title;
@@ -14,6 +11,8 @@ namespace BookClub
             Genre = _genre;
             AuthorLastName = _authorLastName;
             AuthorFirstName = _authorFirstName;
+            Rating = _rating;
+            NumberOfReaders = _numberOfReaders;
         }
 
         //getters and setters
@@ -23,30 +22,8 @@ namespace BookClub
         public string Genre {get;}
         public string AuthorLastName {get;}
         public string AuthorFirstName {get;}
-        public double Rating 
-        {
-            get
-            {
-                return _rating;
-            }
-
-            set
-            {
-                _rating = value;
-            }
-        }
-        public int NumberOfReaders 
-        {
-            get
-            {
-                return _numberOfReaders;
-            }
-
-            set
-            {
-                _numberOfReaders = value;
-            }
-        }
+        public double Rating {get;}
+        public int NumberOfReaders {get;}
 
         public override string ToString() {
             return BookId + "\n" +

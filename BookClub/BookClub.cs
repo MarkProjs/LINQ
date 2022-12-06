@@ -24,11 +24,13 @@ namespace BookClub
             }
         }
 
-        public void LoadData() {
-            var bookElements = booksXml.Elements("book");
+        public void LoadData() 
+        {
+            //make anonymous type for books
+            IEnumerable<XElement> bookElements = booksXml.Elements("book");
             var books = from b in bookElements
                         select new {
-                            ID = b.Attribute("id").Value,
+                            BookId = b.Attribute("id").Value,
                             Title = b.Element("title").Value,
                             Description = b.Element("description").Value,
                             AuthorLastName = b.Element("author").Attribute("lastName").Value,
@@ -36,14 +38,30 @@ namespace BookClub
                             Genre = b.Element("genre").Value
                         };
 
-            
-            var ratingElements = ratingsXml.Elements("book");
+            //make anonymous type for ratings
+            IEnumerable<XElement> ratingElements = ratingsXml.Elements("book");
             var ratings = from c in ratingElements
-                         select new {
+                          select new {
                             BookId = c.Attribute("id").Value,
                             AvgRating = Math.Round((double)c.Elements("rating").Sum(n=>int.Parse(n.Value)) / c.Elements("rating").Count(), 2),
                             NumberOfReaders = c.Elements("rating").Count()
-                        };
+                            };
+            
+            //join the two anonymous types
+            var booksAndRatings = from b in books
+                                  join r in ratings on b.BookId equals r.BookId
+                                  select  new {b.BookId, b.Title, b.Description, b.AuthorLastName, 
+                                               b.AuthorFirstName, b.Genre, r.AvgRating, r.NumberOfReaders};
+
+
+            //populate the List
+            foreach(var br in booksAndRatings)
+            {
+                _books.Add(new Book(int.Parse(br.BookId), br.Title, br.Description, br.Genre, br.AuthorLastName, br.AuthorFirstName, br.AvgRating, br.NumberOfReaders));
+                Console.WriteLine(br);
+            }
         }
+
+
     }
 }
