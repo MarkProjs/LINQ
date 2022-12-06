@@ -1,5 +1,4 @@
 using System;
-using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
@@ -59,6 +58,7 @@ namespace BookClub
             {
                 _books.Add(new Book(int.Parse(br.BookId), br.Title, br.Description, br.Genre, br.AuthorLastName, br.AuthorFirstName, br.AvgRating, br.NumberOfReaders));
                 Console.WriteLine(br);
+                Console.WriteLine();
             }
         }
 
