@@ -41,7 +41,7 @@ namespace BookClub
                     Console.WriteLine("2. View the top-rated books. Press 2");
                     Console.WriteLine("3. Browse books by popular genre. Press 3");
                     Console.WriteLine("4. Search a book by keyword. Press 4");
-                    Console.WriteLine("5. Most popular book per its genre. Press 5");
+                    Console.WriteLine("5. Search an \"Adams\" last name. Press 5");
                     Console.WriteLine("6. Exit the program. Press 6");
                     Console.WriteLine();
                     Console.Write("What would you like to see? ");
@@ -111,24 +111,11 @@ namespace BookClub
                             break;
                             
                         case "5":
-                            // grouping the book by its genre
-                            var GenreQuery = from b in books
-                                            group b by b.Genre;
-                                
-                            //looping through the grouping
-                            foreach(var GenreGroup in GenreQuery) {
-                                //selecting the top book by its genre
-                                var TopBookPerGenre = (from g in GenreGroup
-                                                        orderby g.Rating descending
-                                                        select g).Take(1);
-                                    
-                                //print the top books by its genre
-                                foreach(var TopBook in TopBookPerGenre) {
-                                    Console.WriteLine(TopBook);
-                                    Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
-                                }
+                            IEnumerable<IBook> AdamsBooks = ExtensionMethod(books);
+                            foreach(var BookOfAdam in AdamsBooks) {
+                                Console.WriteLine(BookOfAdam);
+                                Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
                             }
-
                             break;
                         case "6":
                             Console.WriteLine("Have a Good day!");
@@ -144,6 +131,15 @@ namespace BookClub
             }
 
             return isTrue = false;
+        }
+
+
+        private static IEnumerable<IBook> ExtensionMethod(List<IBook> books) 
+        {
+            IEnumerable<IBook> BookWithAdamsLastName = Enumerable.Where(books, n=>n.AuthorLastName.Equals("Adams"));
+
+            return BookWithAdamsLastName;
+
         }
     }
 }
